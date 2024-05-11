@@ -136,17 +136,15 @@ import numpy as np
 
 
 # Create the mesh in polar coordinates and compute corresponding Z.
-rr = np.linspace(0, 0.1, N)
-pp = np.linspace(0, 2*np.pi, N)
-R, P = np.meshgrid(rr, pp)
-cylZ = np.zeros_like(P)
+
 
 #p
 
 
-
+pp = np.linspace(0,2*np.pi,rr.shape[0])
 r,th,z = symbols("r th z")
 # Z = ((R**2 - 1)**2)
+cylZ = np.zeros((rr.shape[0],pp.shape[0]))
 for i,xr in enumerate(rr):
     for j,xp in enumerate(pp):
           #print(i,j,xr,xp,fi_s)
@@ -156,9 +154,9 @@ for i,xr in enumerate(rr):
           cylZ[i][j] = t
 
 # Express the mesh in the cartesian system.
-X, Y = R*np.cos(P), R*np.sin(P)
+#X, Y = R*np.cos(P), R*np.sin(P)
 from cylindrical_surface_plot import polar_plot
-polar_plot(pp,rr,cylZ)
+polar_plot(rr,pp,cylZ)
 # Z = transfrorm_cylindrical_matrix_to_cartesian(rr,pp,cylZ)
 # fig = plt.figure()
 # ax = fig.add_subplot(projection='3d')
